@@ -1,105 +1,74 @@
-# EduPath (Spring Boot + JSP)
+# EduPath AI (Automated Career Guidance Platform)
 
-Career guidance platform for students — aptitude testing, stream/course recommendations, and college search.
+EduPath AI is an intelligent, AI-driven career guidance and college recommendation platform designed to help students discover the best career paths, evaluate their aptitude, and find the perfect college based on real-time data and AI insights.
 
-## Quick start (IntelliJ — recommended)
+## ?? Key Features
 
-1. **Run → Edit Configurations**
-2. Main class: `com.edupath.EdupathApplication`
-3. **Active profiles:** `dev` (H2 in-memory — no MySQL needed)
-4. Run ▶
+### For Students
+*   **Aptitude Test Framework:** A comprehensive assessment system that evaluates a student's strengths, logic, and skills to suggest the most suitable career streams.
+*   **AI-Powered College Insights:** Utilizes Google Gemini AI to generate personalized, real-time insights about a college's environment, placement records, and campus life directly from the dashboard.
+*   **Advanced College Search Engine:** Robust filtering capabilities allowing students to search for colleges across India by stream, state, maximum fees, required cutoff, accepted exams, and NIRF rankings.
+*   **Saved Colleges (Wishlist):** A personalized space for students to save and track their target colleges for future reference.
+*   **Career Library:** An extensive repository of information detailing various career paths, future scopes, and required qualifications.
 
-Browser: http://localhost:8080
+### For Administrators & System
+*   **Dynamic Placement Engine:** Programmatically manages realistic placement rates, average packages, and top recruiter data for over 230+ colleges.
+*   **Automated Data Seeding:** A self-initializing database that automatically cleans and loads hundreds of colleges and demo user accounts on the first startup.
+*   **Security & Authentication:** Fully secured login and registration flows built with Spring Security and password hashing.
 
-> Ready run config: `EdupathApplication` (profile: dev)
+## ?? Tech Stack
 
-### Demo accounts
+**Frontend:**
+*   JSP (JavaServer Pages)
+*   HTML5, CSS3, Vanilla JavaScript
+*   Lucide Icons (for UI elements)
 
-| Role | Email | Password |
-|------|-------|----------|
-| Student | `student@edupath.in` | `Student@123` |
-| Admin | `admin@edupath.in` | `Admin@123` |
+**Backend:**
+*   Java 21
+*   Spring Boot 3.2.x
+*   Spring Data JPA & Hibernate
+*   Spring Security
 
-Select the matching role (Student / Admin) on the login page before signing in.
+**Database:**
+*   H2 Database (Embedded for rapid local development)
+*   MySQL / PostgreSQL (Production-ready configurations included)
 
-### Port 8080 already in use?
+**AI & External Integrations:**
+*   Google Gemini AI API (Dynamic College Insights & Semantic Analysis)
+*   Python Integration (Recommendation Engine algorithms)
 
-```powershell
-netstat -ano | findstr ":8080"
-taskkill /PID <PID_NUMBER> /F
-```
+## ?? Live Demo
+*   **Web Application:** Deploy on Render / Railway
+*   **Database:** Serverless PostgreSQL or Embedded H2
 
-## Maven CLI
+## ?? Local Development Setup
 
-If Maven is installed:
+### Prerequisites
+*   Java 21 JDK installed
+*   IntelliJ IDEA (or Eclipse)
 
-```bash
-mvn spring-boot:run -Dspring-boot.run.profiles=dev
-mvn test
-```
+### 1. Database Setup
+No manual database setup is required for local development! The project uses an embedded H2 database (edupath_db.mv.db) that automatically initializes and creates tables when the application starts.
 
-## MySQL / XAMPP (optional)
+### 2. Backend & Frontend Setup
+The project is a monolithic Spring Boot application where the backend serves the frontend JSPs.
+1. Open the project in IntelliJ IDEA.
+2. Ensure the gemini.api.key in src/main/resources/application.properties is valid.
+3. Run the EdupathApplication.java main class.
+4. The application will start and be accessible at http://localhost:8080.
 
-1. Start MySQL from XAMPP
-2. Set profile to `mysql` in run configuration
-3. Edit `application-mysql.properties` (default password is empty for XAMPP)
+*Demo Accounts:*
+*   Student: student@edupath.in / Student@123
+*   Admin: dmin@edupath.in / Admin@123
 
-```properties
-spring.datasource.password=
-```
+## ?? Deployment (CI/CD)
 
-Schema is auto-created by Hibernate (`ddl-auto=update`). Reference SQL: `db/schema.sql`
+**Deployment Link:** [Add your Render live link here]
 
-## URLs
+The project is configured for seamless cloud deployment:
+*   **Dockerfile:** Included in the root directory for deploying the Spring Boot application seamlessly to container services like Render, Railway, or Koyeb.
+*   **WAR Packaging:** The pom.xml is explicitly configured to package the application as a .war file to natively support JSP view rendering in a production environment.
+*   **Environment Variables:** Fully supports overriding the Database URL and Gemini API Key using environment variables (SPRING_PROFILES_ACTIVE, GEMINI_API_KEY) for secure production deployments.
 
-| URL | Page |
-|-----|------|
-| `/` | Home |
-| `/signup` | Register |
-| `/login` | Login |
-| `/dashboard` | Student dashboard |
-| `/admin` | Admin panel (college management) |
-| `/colleges` | College search |
-| `/aptitude-test` | Aptitude test (login required) |
-| `/aptitude-result` | Test results (stream or Class 12 courses) |
-
-Legacy `.jsp` URLs redirect automatically.
-
-## API
-
-- `GET /api/colleges` — college list (public, filters supported)
-- `POST /api/colleges/save` — save/unsave college (login required)
-- `POST /api/aptitude/submit` — submit aptitude JSON (login required)
-
-## Python recommendation engine
-
-File: `src/main/resources/python/recommend.py`
-
-Optional — if Python is not installed, Java fallback is used.
-
-```bash
-python src/main/resources/python/recommend.py 8 7 2 1 6 3 1
-```
-
-Config (`application.properties`):
-
-```properties
-edupath.python.enabled=true
-edupath.python.command=python
-```
-
-On Windows, if `python` fails, try: `edupath.python.command=py`
-
-## Security
-
-- Spring Security protects authenticated routes
-- Passwords stored with BCrypt
-- Session-based login (30 min timeout)
-
-## Tests
-
-```bash
-mvn test
-```
-
-Includes context load, login flow, and API auth smoke tests.
+## ?? License
+This project is proprietary and developed for prototyping, academic, and demonstration purposes.
