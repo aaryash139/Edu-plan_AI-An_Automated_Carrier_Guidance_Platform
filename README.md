@@ -38,7 +38,7 @@ EduPath AI is an intelligent, AI-driven career guidance and college recommendati
 *   Python Integration (Recommendation Engine algorithms)
 
 ## ?? Live Demo
-*   **Web Application:** Deploy on Render / Railway
+*   **Web Application:** [https://edu-plan-ai-an-automated-carrier.onrender.com/](https://edu-plan-ai-an-automated-carrier.onrender.com/)
 *   **Database:** Serverless PostgreSQL or Embedded H2
 
 ## ?? Local Development Setup
@@ -48,27 +48,27 @@ EduPath AI is an intelligent, AI-driven career guidance and college recommendati
 *   IntelliJ IDEA (or Eclipse)
 
 ### 1. Database Setup
-No manual database setup is required for local development! The project uses an embedded H2 database (edupath_db.mv.db) that automatically initializes and creates tables when the application starts.
+No manual database setup is required for local development! The project uses an embedded H2 database (`edupath_db.mv.db`) that automatically initializes and creates tables when the application starts.
 
 ### 2. Backend & Frontend Setup
 The project is a monolithic Spring Boot application where the backend serves the frontend JSPs.
 1. Open the project in IntelliJ IDEA.
-2. Ensure the gemini.api.key in src/main/resources/application.properties is valid.
-3. Run the EdupathApplication.java main class.
-4. The application will start and be accessible at http://localhost:8080.
+2. Ensure the `gemini.api.key` in `src/main/resources/application.properties` is valid.
+3. Run the `EdupathApplication.java` main class.
+4. The application will start and be accessible at `http://localhost:8080`.
 
 *Demo Accounts:*
-*   Student: student@edupath.in / Student@123
-*   Admin: dmin@edupath.in / Admin@123
+*   Student: `student@edupath.in` / `Student@123`
+*   Admin: `admin@edupath.in` / `Admin@123`
 
 ## ?? Deployment (CI/CD)
 
-**Deployment Link:** [Add your Render live link here]
+**Deployment Link:** [https://edu-plan-ai-an-automated-carrier.onrender.com/](https://edu-plan-ai-an-automated-carrier.onrender.com/)
 
 The project is configured for seamless cloud deployment:
 *   **Dockerfile:** Included in the root directory for deploying the Spring Boot application seamlessly to container services like Render, Railway, or Koyeb.
-*   **WAR Packaging:** The pom.xml is explicitly configured to package the application as a .war file to natively support JSP view rendering in a production environment.
-*   **Environment Variables:** Fully supports overriding the Database URL and Gemini API Key using environment variables (SPRING_PROFILES_ACTIVE, GEMINI_API_KEY) for secure production deployments.
+*   **WAR Packaging:** The `pom.xml` is explicitly configured to package the application as a `.war` file to natively support JSP view rendering in a production environment.
+*   **Environment Variables:** Fully supports overriding the Database URL and Gemini API Key using environment variables (`SPRING_PROFILES_ACTIVE`, `GEMINI_API_KEY`) for secure production deployments.
 
 ## ?? License
 This project is proprietary and developed for prototyping, academic, and demonstration purposes.
