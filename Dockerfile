@@ -6,6 +6,6 @@ RUN mvn clean package -DskipTests
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=build /app/target/EDUPATH-1.0-SNAPSHOT.war ./app.war
+COPY --from=build /app/target/EDUPATH.war ./app.war
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.war"]
